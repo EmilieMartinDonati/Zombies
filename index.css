@@ -1,0 +1,41 @@
+body {
+  box-sizing: border-box;
+  /* background-image: url("Japanese-Castle.jpg");
+  background-size: cover; */
+}
+
+#modal {
+  position: fixed;
+  display: block;
+  z-index: 100;
+  width: 30%; 
+  height: 30%; 
+  overflow: auto;
+  background-image: url("modal.jpg");
+  background-size: cover;
+}
+
+#modal2 {
+  visibility: hidden;
+  width: 500px; 
+  height: 500px; 
+  z-index: 1;
+  overflow: auto;
+}
+
+#other {
+  background-image: url("./Japanese-Castle.jpg");
+  background-size: cover;
+  z-index: -1;
+}
+
+#points {
+  width: 50%; 
+  height: 50%; 
+  z-index: 1;
+  overflow: auto;
+}
+
+#question {
+  visibility: hidden;
+}
