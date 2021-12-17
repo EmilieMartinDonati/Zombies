@@ -3,7 +3,9 @@ const question = document.getElementById("question_perso");
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
-const victory =  document.getElementById("victory")
+const victory =  document.getElementById("victory");
+const timeVictory = document.getElementById("timeVictory");
+const died = document.getElementById("died");
 
 // submitButton.addEventListener('click', showResults);
 
@@ -11,10 +13,14 @@ const victory =  document.getElementById("victory")
 const canvas = document.getElementById("other");
 const ctx = canvas.getContext('2d');
 
+let done = false;
+let dead = false;
 
 function openDoor() {
   question.style.visibility = "hidden";
   victory.style.visibility = "visible";
+  done = true;
+
 }
 
 
@@ -223,6 +229,7 @@ const restartBtn = document.getElementById("restart-btn");
 function modalRestartVisibilityHandler() {
   modal2.style.visibility = "visible";
  canvas.style.opacity = 0.3;
+ dead = true;
 }
 
 function refresh() {
@@ -245,7 +252,11 @@ function timerHome(limit) {
     let id = setInterval(() => {
       count--;
       homeCountDown.textContent = count;
-      if (count === limit) resolve(id);
+      timeVictory.textContent = 40 - count;
+      died.textContent = 40 - count;
+      if (count === limit ) resolve(id);
+      if (done) resolve(id);
+      if (dead) resolve(id);
     }, 1000);
   });
 }
