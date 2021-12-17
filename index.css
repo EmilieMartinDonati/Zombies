@@ -7,8 +7,8 @@ body {
 #large_container {
   display: flex;
   flex-direction: column;
-  size: 1700px;
-  height: 1700px;
+  width: 1300px;
+  height: 100vh;
 }
 
 #modal {
