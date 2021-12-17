@@ -98,18 +98,18 @@ op2.addEventListener("click", () => {
 
 // Show selection for op3
 op3.addEventListener("click", () => {
-  op1.style.backgroundColor = "lightskyblue";
-  op2.style.backgroundColor = "lightskyblue";
+  // op1.style.backgroundColor = "lightskyblue";
+  // op2.style.backgroundColor = "lightskyblue";
   op3.style.backgroundColor = "lightgoldenrodyellow";
-  op4.style.backgroundColor = "lightskyblue";
+  // op4.style.backgroundColor = "lightskyblue";
   selected = op3.value;
 })
 
 // Show selection for op4
 op4.addEventListener("click", () => {
-  op1.style.backgroundColor = "lightskyblue";
-  op2.style.backgroundColor = "lightskyblue";
-  op3.style.backgroundColor = "lightskyblue";
+  // op1.style.backgroundColor = "lightskyblue";
+  // op2.style.backgroundColor = "lightskyblue";
+  // op3.style.backgroundColor = "lightskyblue";
   op4.style.backgroundColor = "lightgoldenrodyellow";
   selected = op4.value;
 })
@@ -221,7 +221,7 @@ const homeCountDown = document.getElementById("homeCountDown");
 
 function timerHome(limit) {
   return new Promise((resolve, reject) => {
-    let count = 100;
+    let count = 50;
     let id = setInterval(() => {
       count--;
       homeCountDown.textContent = count;
@@ -290,12 +290,21 @@ class Zombie {
   }
 }
 
-const zombie = new Zombie(1000, 500, -8, -2);
-const zombie2 = new Zombie(80, 100, 4, 3);
-const zombie3 = new Zombie(150, 300, -2, -3);
-const zombie4 = new Zombie(500, 90, -5, -1);
-const zombie5 = new Zombie(3, 500, -5, -1);
-const zombie6 = new Zombie(750, 800, -2, -6);
+const zombie = new Zombie(1000, 500, -8, -5);
+const zombie2 = new Zombie(80, 100, 4, 7);
+const zombie3 = new Zombie(150, 300, -7, -7);
+const zombie4 = new Zombie(500, 90, -5, -8);
+const zombie5 = new Zombie(3, 500, -5, -7);
+const zombie6 = new Zombie(750, 800, -5, -5);
+const zombie7 = new Zombie(900, 600, -3, -7);
+const zombie8 = new Zombie(1100, 700, -7, -4);
+const zombie9 = new Zombie(900, 55, 3, 6);
+const zombie10 = new Zombie(300, 750, 4, 6);
+const zombie11 = new Zombie(1000, 400, -7, 3);
+const zombie12 = new Zombie(300, 77, 4, 6);
+const zombie13 = new Zombie(1003, 710, -5, 5);
+const zombie14 = new Zombie(600, 64, 7, -6);
+const zombie15 = new Zombie(500, 750, -7, 3);
 
 
 function updateZombies() {
@@ -307,43 +316,106 @@ function updateZombies() {
   zombie4.draw();
   zombie5.draw();
   zombie6.draw();
-  if (zombie.x > 1200 || zombie.y > 800 || zombie.x < 1 || zombie.y < 1) {
+  zombie7.draw();
+  zombie8.draw();
+  zombie9.draw();
+  zombie10.draw();
+  zombie11.draw();
+  zombie12.draw();
+  zombie13.draw();
+  zombie14.draw();
+  zombie15.draw();
+  if (zombie.x > 1300 || zombie.y > 900 || zombie.x < 1 || zombie.y < 1) {
     zombie.move("minus");
   }
   else {
     zombie.move("plus");
   }
-  if (zombie2.x > 1200|| zombie2.y > 800|| zombie2.x < 1 || zombie2.y < 1) {
+  if (zombie2.x > 1300|| zombie2.y > 900| zombie2.x < 1 || zombie2.y < 1) {
     zombie2.move("minus");
   }
   else {
     zombie2.move("plus");
   }
-  if (zombie3.x > 1200 || zombie3.y > 800|| zombie3.x < 1 || zombie3.y < 1) {
+  if (zombie3.x > 1300 || zombie3.y > 900|| zombie3.x < 1 || zombie3.y < 1) {
     zombie3.move("minus");
   }
   else {
     zombie3.move("plus");
   }
-  if (zombie4.x > 1200 || zombie4.y > 800 || zombie4.x < 1 || zombie4.y < 1) {
+  if (zombie4.x > 1300 || zombie4.y > 900 || zombie4.x < 1 || zombie4.y < 1) {
     zombie4.move("minus");
   }
   else {
     zombie4.move("plus");
   }
-  if (zombie5.x > 1200 || zombie5.y > 800 || zombie5.x < 1 || zombie5.y < 1) {
+  if (zombie5.x > 1300 || zombie5.y > 900 || zombie5.x < 1 || zombie5.y < 1) {
     zombie5.move("minus");
   }
   else {
     zombie5.move("plus");
   }
-  if (zombie6.x > 1200 || zombie6.y > 800 || zombie6.x < 1 || zombie6.y < 1) {
+  if (zombie6.x > 1300 || zombie6.y > 900 || zombie6.x < 1 || zombie6.y < 1) {
     zombie6.move("minus");
   }
   else {
     zombie6.move("plus");
   }
-    if (((Math.abs(zombie.y - player.y) < 50) && (Math.abs(zombie.x - player.x) < 50)) || ((Math.abs(zombie2.y - player.y) < 50) && (Math.abs(zombie2.x - player.x) < 50)) || ((Math.abs(zombie3.y - player.y) < 50) && (Math.abs(zombie3.x - player.x) < 50)) || ((Math.abs(zombie4.y - player.y) < 50) && (Math.abs(zombie4.x - player.x) < 50)) || ((Math.abs(zombie5.y - player.y) < 50) && (Math.abs(zombie5.x - player.x) < 50)) || ((Math.abs(zombie6.y - player.y) < 50) && (Math.abs(zombie6.x - player.x) < 50))) {
+  if (zombie7.x > 1300 || zombie7.y > 900 || zombie7.x < 1 || zombie7.y < 1) {
+    zombie7.move("minus");
+  }
+  else {
+    zombie7.move("plus");
+  }
+  if (zombie8.x > 1300 || zombie8.y > 900 || zombie8.x < 1 || zombie8.y < 1) {
+    zombie8.move("minus");
+  }
+  else {
+    zombie8.move("plus");
+  }
+  if (zombie9.x > 1300 || zombie9.y > 900 || zombie9.x < 1 || zombie9.y < 1) {
+    zombie9.move("minus");
+  }
+  else {
+    zombie9.move("plus");
+  }
+  if (zombie10.x > 1300 || zombie10.y > 900 || zombie10.x < 1 || zombie10.y < 1) {
+    zombie10.move("minus");
+  }
+  else {
+    zombie10.move("plus");
+  }
+  if (zombie11.x > 1300 || zombie11.y > 900 || zombie11.x < 1 || zombie11.y < 1) {
+    zombie11.move("minus");
+  }
+  else {
+    zombie11.move("plus");
+  }
+  if (zombie12.x > 1300 || zombie12.y > 900 || zombie12.x < 1 || zombie12.y < 1) {
+    zombie12.move("minus");
+  }
+  else {
+    zombie12.move("plus");
+  }
+  if (zombie13.x > 1300 || zombie13.y > 900 || zombie13.x < 1 || zombie13.y < 1) {
+    zombie13.move("minus");
+  }
+  else {
+    zombie13.move("plus");
+  }
+  if (zombie14.x > 1300 || zombie14.y > 900 || zombie14.x < 1 || zombie14.y < 1) {
+    zombie14.move("minus");
+  }
+  else {
+    zombie14.move("plus");
+  }
+  if (zombie15.x > 1300 || zombie15.y > 900 || zombie15.x < 1 || zombie15.y < 1) {
+    zombie15.move("minus");
+  }
+  else {
+    zombie15.move("plus");
+  }
+    if (((Math.abs(zombie.y - player.y) < 50) && (Math.abs(zombie.x - player.x) < 50)) || ((Math.abs(zombie2.y - player.y) < 50) && (Math.abs(zombie2.x - player.x) < 50)) || ((Math.abs(zombie3.y - player.y) < 50) && (Math.abs(zombie3.x - player.x) < 50)) || ((Math.abs(zombie4.y - player.y) < 50) && (Math.abs(zombie4.x - player.x) < 50)) || ((Math.abs(zombie5.y - player.y) < 50) && (Math.abs(zombie5.x - player.x) < 50)) || ((Math.abs(zombie6.y - player.y) < 50) && (Math.abs(zombie6.x - player.x) < 50)) || ((Math.abs(zombie7.y - player.y) < 50) && (Math.abs(zombie7.x - player.x) < 50)) || ((Math.abs(zombie8.y - player.y) < 50) && (Math.abs(zombie8.x - player.x) < 50)) || ((Math.abs(zombie9.y - player.y) < 50) && (Math.abs(zombie9.x - player.x) < 50)) || ((Math.abs(zombie10.y - player.y) < 50) && (Math.abs(zombie10.x - player.x) < 50)) || ((Math.abs(zombie11.y - player.y) < 50) && (Math.abs(zombie11.x - player.x) < 50)) || ((Math.abs(zombie12.y - player.y) < 50) && (Math.abs(zombie12.x - player.x) < 50)) || ((Math.abs(zombie13.y - player.y) < 50) && (Math.abs(zombie13.x - player.x) < 50)) || ((Math.abs(zombie14.y - player.y) < 50) && (Math.abs(zombie14.x - player.x) < 50))) {
       GameOver();
       stopFunction();
     }
@@ -364,8 +436,8 @@ function stopFunction() {
 
 class Player {
   constructor(x, y) {
-    this.x = 30;
-    this.y = 30;
+    this.x = 680;
+    this.y = 500;
     const imgPlayer = new Image();
     imgPlayer.src = './man-g8ee15bac5_640.png';
     this.img = imgPlayer;
@@ -424,6 +496,15 @@ function updatePlayer() {
   zombie4.draw();
   zombie5.draw();
   zombie6.draw();
+  zombie7.draw();
+  zombie8.draw();
+  zombie9.draw();
+  zombie10.draw();
+  zombie11.draw();
+  zombie12.draw();
+  zombie13.draw();
+  zombie14.draw();
+  zombie15.draw();
   // aDoor.draw();
   }
 
@@ -459,6 +540,15 @@ function updatePrize() {
   zombie4.draw();
   zombie5.draw();
   zombie6.draw();
+  zombie7.draw();
+  zombie8.draw();
+  zombie9.draw();
+  zombie10.draw();
+  zombie11.draw();
+  zombie12.draw();
+  zombie13.draw();
+  zombie14.draw();
+  zombie15.draw();
   // aDoor.draw();
 }
 
