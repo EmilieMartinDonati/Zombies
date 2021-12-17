@@ -3,6 +3,7 @@ const question = document.getElementById("question_perso");
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
+const victory =  document.getElementById("victory")
 
 // submitButton.addEventListener('click', showResults);
 
@@ -12,7 +13,8 @@ const ctx = canvas.getContext('2d');
 
 
 function openDoor() {
-  window.location.href = "/page_2.html";
+  question.style.visibility = "hidden";
+  victory.style.visibility = "visible";
 }
 
 
@@ -79,18 +81,18 @@ var selected = "";
 // Show selection for op1
 op1.addEventListener("click", () => {
   op1.style.backgroundColor = "lightgoldenrodyellow";
-  op2.style.backgroundColor = "lightskyblue";
-  op3.style.backgroundColor = "lightskyblue";
-  op4.style.backgroundColor = "lightskyblue";
+  // op2.style.backgroundColor = "lightskyblue";
+  // op3.style.backgroundColor = "lightskyblue";
+  // op4.style.backgroundColor = "lightskyblue";
   selected = op1.value;
 })
 
 // Show selection for op2
 op2.addEventListener("click", () => {
-  op1.style.backgroundColor = "lightskyblue";
+  // op1.style.backgroundColor = "lightskyblue";
   op2.style.backgroundColor = "lightgoldenrodyellow";
-  op3.style.backgroundColor = "lightskyblue";
-  op4.style.backgroundColor = "lightskyblue";
+  // op3.style.backgroundColor = "lightskyblue";
+  // op4.style.backgroundColor = "lightskyblue";
   selected = op2.value;
 })
 
