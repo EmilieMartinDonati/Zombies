@@ -30,10 +30,10 @@ function displayQuizz () {
 const Questions = [{
   id: 0,
   q: "What is the capital of India?",
-  a: [{ text: "gandhinagar", isCorrect: false },
+  a: [{ text: "Gandhinagar", isCorrect: false },
       { text: "Surat", isCorrect: false },
       { text: "Delhi", isCorrect: true },
-      { text: "mumbai", isCorrect: false }
+      { text: "Mumbai", isCorrect: false }
   ]
 
 },
@@ -41,7 +41,7 @@ const Questions = [{
   id: 1,
   q: "What is the capital of Thailand?",
   a: [{ text: "Lampang", isCorrect: false, isSelected: false },
-      { text: "phuket", isCorrect: false },
+      { text: "Phuket", isCorrect: false },
       { text: "Ayutthaya", isCorrect: false },
       { text: "Bangkok", isCorrect: true }
   ]
@@ -129,7 +129,7 @@ submitAnswer[0].addEventListener("click", () => {
   }
   }
   else {
-      result[0].innerHTML = "Outrageous answer. Please do better.";
+      result[0].innerHTML = "Wrong answer. Please do better.";
       result[0].style.color = "violet";
   }
 })
@@ -142,46 +142,46 @@ var id = 0;
 
 
 
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+// var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
-function preventDefault(e) {
-  e.preventDefault();
-}
+// function preventDefault(e) {
+//   e.preventDefault();
+// }
 
-function preventDefaultForScrollKeys(e) {
-  if (keys[e.keyCode]) {
-    preventDefault(e);
-    return false;
-  }
-}
+// function preventDefaultForScrollKeys(e) {
+//   if (keys[e.keyCode]) {
+//     preventDefault(e);
+//     return false;
+//   }
+// }
 
-// modern Chrome requires { passive: false } when adding event
-var supportsPassive = false;
-try {
-  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-    get: function () { supportsPassive = true; } 
-  }));
-} catch(e) {}
+// // modern Chrome requires { passive: false } when adding event
+// var supportsPassive = false;
+// try {
+//   window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+//     get: function () { supportsPassive = true; } 
+//   }));
+// } catch(e) {}
 
-var wheelOpt = supportsPassive ? { passive: false } : false;
-var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+// var wheelOpt = supportsPassive ? { passive: false } : false;
+// var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
-// call this to Disable
-function disableScroll() {
-  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// // call this to Disable
+// function disableScroll() {
+//   window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+//   window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+//   window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+//   window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
-disableScroll();
+// disableScroll();
 
-function enableScroll() {
-  window.removeEventListener('DOMMouseScroll', preventDefault, false);
-  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-  window.removeEventListener('touchmove', preventDefault, wheelOpt);
-  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// function enableScroll() {
+//   window.removeEventListener('DOMMouseScroll', preventDefault, false);
+//   window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+//   window.removeEventListener('touchmove', preventDefault, wheelOpt);
+//   window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
 
 const modal = document.getElementById("modal");
@@ -296,13 +296,13 @@ const zombie3 = new Zombie(150, 300, -7, -7);
 const zombie4 = new Zombie(500, 90, -5, -8);
 const zombie5 = new Zombie(3, 500, -5, -7);
 const zombie6 = new Zombie(750, 800, -5, -5);
-const zombie7 = new Zombie(900, 600, -3, -7);
+const zombie7 = new Zombie(900, 600, -4, -7);
 const zombie8 = new Zombie(1100, 700, -7, -4);
-const zombie9 = new Zombie(900, 55, 3, 6);
+const zombie9 = new Zombie(900, 55, 5, 6);
 const zombie10 = new Zombie(300, 750, 4, 6);
 const zombie11 = new Zombie(1000, 400, -7, 3);
 const zombie12 = new Zombie(300, 77, 4, 6);
-const zombie13 = new Zombie(1003, 710, -5, 5);
+const zombie13 = new Zombie(1003, 710, -7, 5);
 const zombie14 = new Zombie(600, 64, 7, -6);
 const zombie15 = new Zombie(500, 750, -7, 3);
 
