@@ -47,6 +47,26 @@ const Questions = [{
   ]
 
 },
+{
+  id: 2,
+  q: "What is the PH of the Coca Cola ?",
+  a: [{ text: "2,8", isCorrect: false, isSelected: false },
+      { text: "3,9", isCorrect: false },
+      { text: "7", isCorrect: false },
+      { text: "2,5", isCorrect: true }
+  ]
+
+},
+{
+  id: 3,
+  q: "What's the name of Mozart's archenemy?",
+  a: [{ text: "Verdi", isCorrect: false, isSelected: false },
+      { text: "Bellini", isCorrect: false },
+      { text: "Salieri", isCorrect: true },
+      { text: "Wagner", isCorrect: false }
+  ]
+
+},
 
 ]
 
@@ -80,7 +100,7 @@ var selected = "";
 
 // Show selection for op1
 op1.addEventListener("click", () => {
-  op1.style.backgroundColor = "lightgoldenrodyellow";
+  // op1.style.backgroundColor = "lightgoldenrodyellow";
   // op2.style.backgroundColor = "lightskyblue";
   // op3.style.backgroundColor = "lightskyblue";
   // op4.style.backgroundColor = "lightskyblue";
@@ -90,7 +110,7 @@ op1.addEventListener("click", () => {
 // Show selection for op2
 op2.addEventListener("click", () => {
   // op1.style.backgroundColor = "lightskyblue";
-  op2.style.backgroundColor = "lightgoldenrodyellow";
+  // op2.style.backgroundColor = "lightgoldenrodyellow";
   // op3.style.backgroundColor = "lightskyblue";
   // op4.style.backgroundColor = "lightskyblue";
   selected = op2.value;
@@ -100,7 +120,7 @@ op2.addEventListener("click", () => {
 op3.addEventListener("click", () => {
   // op1.style.backgroundColor = "lightskyblue";
   // op2.style.backgroundColor = "lightskyblue";
-  op3.style.backgroundColor = "lightgoldenrodyellow";
+  // op3.style.backgroundColor = "lightgoldenrodyellow";
   // op4.style.backgroundColor = "lightskyblue";
   selected = op3.value;
 })
@@ -110,7 +130,7 @@ op4.addEventListener("click", () => {
   // op1.style.backgroundColor = "lightskyblue";
   // op2.style.backgroundColor = "lightskyblue";
   // op3.style.backgroundColor = "lightskyblue";
-  op4.style.backgroundColor = "lightgoldenrodyellow";
+  // op4.style.backgroundColor = "lightgoldenrodyellow";
   selected = op4.value;
 })
 
@@ -119,12 +139,12 @@ const submitAnswer = document.getElementsByClassName("submit_answer");
 submitAnswer[0].addEventListener("click", () => {
   if (selected == "true") {
       start = false;
-   if (id < 1) {
+   if (id < 3) {
   id++;
   iterate(id);
   console.log(id);
 }
-  else if (id = 1) {
+  else if (id = 3) {
     openDoor();
   }
   }
@@ -221,7 +241,7 @@ const homeCountDown = document.getElementById("homeCountDown");
 
 function timerHome(limit) {
   return new Promise((resolve, reject) => {
-    let count = 50;
+    let count = 40;
     let id = setInterval(() => {
       count--;
       homeCountDown.textContent = count;
@@ -436,8 +456,8 @@ function stopFunction() {
 
 class Player {
   constructor(x, y) {
-    this.x = 680;
-    this.y = 500;
+    this.x = 30;
+    this.y = 30;
     const imgPlayer = new Image();
     imgPlayer.src = './man-g8ee15bac5_640.png';
     this.img = imgPlayer;

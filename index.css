@@ -114,6 +114,7 @@ button {
   padding: 2%;
   background-color: maroon;
   color: white;
+  font-size: 1.2em;
 }
 
 .submit_answer {
@@ -144,4 +145,8 @@ button {
 .option-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.question-container {
+  font-size: 1.2;
 }
