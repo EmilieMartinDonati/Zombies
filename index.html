@@ -1,3 +1,5 @@
+import 'animate.css';
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="module" src="./index.js"></script>
+    <script type="module" src="./Otter.js"></script>
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-
     <div id="large_container">
+    <div id="otter_container">
+        <div><p>Hi</p><img animate__animated animate__backInLeft></div>
+        <div><p>Hi too</p><img animate__animated animate__backInLeft></div>
+        <div><p>Hola</p><img animate__animated animate__backInLeft></div>
+        <div id="otterCounter"></div>
+    </div>
+
     <div id="question_perso">
         <div class="panel">
             <div class="question-container" id="question">
@@ -48,7 +57,9 @@
     <div id="victory"><p>You escaped the castle in <span id="timeVictory"></span> seconds!</p></div>
     <div id="points"></div>
     <div id="homeCountDown"></div>
-    <audio src="#" controls></audio>
+    <audio
+        controls
+        src="/Ding-sound-effect.mp3"></audio>
     </div>
 </body>
 </html> 

@@ -1,3 +1,6 @@
+
+
+
 body {
   box-sizing: border-box;
   color: white;
@@ -153,3 +156,26 @@ button {
   font-size: 1.2;
 }
 
+#otter_container {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+#otter_container div {
+  min-width: 300px;
+  min-height: 100px;
+  border: black solid 1 px;
+  background-color: grey;
+  text-align: center;
+}
+
+#otter_container div img {
+  max-width: 500px;
+  max-height: 100px;
+}
+
+#otterCounter {
+  font-size: 1.2em;
+}
