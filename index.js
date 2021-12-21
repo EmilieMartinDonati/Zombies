@@ -1,4 +1,3 @@
-
 import Otter from "./Otter.js";
 import Ghost from "./Ghost.js";
 
@@ -152,46 +151,46 @@ var id = 0;
 
 
 
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+// var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
-function preventDefault(e) {
-  e.preventDefault();
-}
+// function preventDefault(e) {
+//   e.preventDefault();
+// }
 
-function preventDefaultForScrollKeys(e) {
-  if (keys[e.keyCode]) {
-    preventDefault(e);
-    return false;
-  }
-}
+// function preventDefaultForScrollKeys(e) {
+//   if (keys[e.keyCode]) {
+//     preventDefault(e);
+//     return false;
+//   }
+// }
 
-// modern Chrome requires { passive: false } when adding event
-var supportsPassive = false;
-try {
-  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-    get: function () { supportsPassive = true; } 
-  }));
-} catch(e) {}
+// // modern Chrome requires { passive: false } when adding event
+// var supportsPassive = false;
+// try {
+//   window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+//     get: function () { supportsPassive = true; } 
+//   }));
+// } catch(e) {}
 
-var wheelOpt = supportsPassive ? { passive: false } : false;
-var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+// var wheelOpt = supportsPassive ? { passive: false } : false;
+// var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
-// call this to Disable
-function disableScroll() {
-  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// // call this to Disable
+// function disableScroll() {
+//   window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+//   window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+//   window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+//   window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
-disableScroll();
+// disableScroll();
 
-function enableScroll() {
-  window.removeEventListener('DOMMouseScroll', preventDefault, false);
-  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-  window.removeEventListener('touchmove', preventDefault, wheelOpt);
-  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// function enableScroll() {
+//   window.removeEventListener('DOMMouseScroll', preventDefault, false);
+//   window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+//   window.removeEventListener('touchmove', preventDefault, wheelOpt);
+//   window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
 
 const modal = document.getElementById("modal");
@@ -235,6 +234,7 @@ function timerHome(limit) {
     let count = 40;
     let id = setInterval(() => {
       count--;
+      console.log(count);
       homeCountDown.textContent = count;
       timeVictory.textContent = 40 - count;
       died.textContent = 40 - count;
@@ -304,6 +304,8 @@ console.log(otterArray);
 const otterDisplay = document.querySelectorAll("#otter_container div img");
 const otterDisplayArr = Array.from(otterDisplay);
 
+const otterAudio = document.getElementById("audio_otter");
+
 
 let countOtter = 0;
 function pickOtters () {
@@ -314,6 +316,9 @@ function pickOtters () {
       otterDisplay[i].src = "./otterDrawing.jpg";
       otterArray[i].collected = true;
       console.log(otterArray[i]);
+      otterAudio.play();
+      otterAudio.stop();
+
     }
   }
   otterCounter.textContent = countOtter;
@@ -323,7 +328,7 @@ function pickOtters () {
 function updateZombies() {
   updatePlayer();
   updatePrize();
-  otterArray.forEach(otter => otter.draw());
+  otterArray.forEach(function(otter) {if (otter.collected === false) {otter.draw()}});
   ghostArray.forEach(function (ghost) {
   ghost.draw();
   if (ghost.x > 1300 || ghost.y > 900 || ghost.x < 1 || ghost.y < 1) {
@@ -406,7 +411,7 @@ document.addEventListener('keydown', e => {
 
 function updatePlayer() {
   ctx.clearRect(0, 0, 1500, 1000);
-  otterArray.forEach(otter => otter.draw());
+  otterArray.forEach(function(otter) {if (otter.collected === false) {otter.draw()}});
   pickOtters();
   player.draw();
   prize.draw();
@@ -437,7 +442,8 @@ const prize = new Prize(800, 800);
 
 function updatePrize() {
   ctx.clearRect(0, 0, 1500, 1000);
-  otterArray.forEach(otter => otter.draw());
+  otterArray.forEach(function(otter) {if (otter.collected === false) {otter.draw()}});
+  pickOtters();
   prize.draw();
   player.draw();
   ghostArray.forEach(ghost => ghost.draw());

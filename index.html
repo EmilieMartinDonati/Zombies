@@ -13,11 +13,13 @@ import 'animate.css';
 </head>
 <body>
     <div id="large_container">
+
     <div id="otter_container">
-        <div><p>Hi</p><img animate__animated animate__backInLeft></div>
-        <div><p>Hi too</p><img animate__animated animate__backInLeft></div>
-        <div><p>Hola</p><img animate__animated animate__backInLeft></div>
+        <div><img animate__animated animate__backInLeft></div>
+        <div><img animate__animated animate__backInLeft></div>
+        <div><img animate__animated animate__backInLeft></div>
         <div id="otterCounter"></div>
+        <div id="homeCountDown"></div>
     </div>
 
     <div id="question_perso">
@@ -42,24 +44,26 @@ import 'animate.css';
         </div>
         <div class="geisha"></div>
         </div>
-        <div id="modal">
-            <p>You're trapped in an haunted japanese castle. To unlock the door, you must find the geisha and answer her questions. Move and think fast, for your minutes are numbered ... </p>
-            <button id="start-btn">Start the Game</button>
-        </div>
+
 
     <canvas id="other" width="1500px" height="1000px">
-    <!-- <canvas id="castle" width="1000" height="700"></canvas> -->
     </canvas>
+
+    <div id="modal">
+        <p>You're trapped in an haunted japanese castle. To unlock the door, you must find the geisha and answer her questions. Move and think fast, for your minutes are numbered ... </p>
+        <button id="start-btn">Start the Game</button>
+    </div>
+
     <div id="modal2">
         <p>You died after <span id="died"></span> tiny seconds... Click the restart button to try again</p>
         <button id="restart-btn">Try again</button>
     </div>
     <div id="victory"><p>You escaped the castle in <span id="timeVictory"></span> seconds!</p></div>
-    <div id="points"></div>
-    <div id="homeCountDown"></div>
+    <!-- <div id="points"></div> -->
+
     <audio
         controls
-        src="/Ding-sound-effect.mp3"></audio>
+        src="/Ding-sound-effect.mp3" id="audio_otter"></audio>
     </div>
 </body>
 </html> 
