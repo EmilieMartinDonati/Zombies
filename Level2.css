@@ -1,0 +1,10 @@
+#canvas_2 {
+    background-image: url("fantasy.jpg");
+    background-size: cover;
+    width: 1000px;
+    height: 800px;
+  }
+  
+#failure {
+  visibility: hidden;
+}

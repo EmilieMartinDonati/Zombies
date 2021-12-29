@@ -1,71 +1,96 @@
-import 'animate.css';
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
     <script type="module" src="./index.js"></script>
     <script type="module" src="./Otter.js"></script>
-    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+    <title>Level-1</title>
 </head>
+
 <body>
-    <div id="large_container">
+    <div id="large_container" class="container-fluid">
 
-    <div id="otter_container">
-        <div><img animate__animated animate__backInLeft></div>
-        <div><img animate__animated animate__backInLeft></div>
-        <div><img animate__animated animate__backInLeft></div>
-        <div id="otterCounter"></div>
-        <div id="homeCountDown"></div>
-    </div>
 
-    <div id="question_perso">
-        <div class="panel">
-            <div class="question-container" id="question">
-                Question goes here.
-            </div>
-            <div class="option-container">
-                <button class="option" onclick="" id="op1" >option1</button>
-          
-                <button class="option" id="op2" >option2</button>
-          
-                <button class="option" id="op3">option3</button>
-          
-                <button class="option" id="op4">option4</button>
-            </div>
-            <div class="navigation">
-                <button class="submit_answer">Submit</button>
-            </div>
-            <div class="result">
-            </div>
-        </div>
-        <div class="geisha"></div>
+        <div id="otter_container" class="row bg-dark">
+            <div class="col-3 text-center"><img></div>
+            <div class="col-3 text-center"><img></div>
+            <div class="col-3 text-center"><img></div>
+            <div id="otterCounter" class="col-1 text-center"></div>
+            <div id="homeCountDown" class="col-2 text-center"></div>
         </div>
 
+        <canvas id="other" width="1500px" height="1000px" class="row mx-auto">
+        </canvas>
 
-    <canvas id="other" width="1500px" height="1000px">
-    </canvas>
+        <div id="question_perso">
+            <div class="panel">
+                <div class="question-container" id="question">
+                    Question goes here.
+                </div>
+                <div class="option-container">
+                    <button class="option" onclick="" id="op1">option1</button>
 
-    <div id="modal">
-        <p>You're trapped in an haunted japanese castle. To unlock the door, you must find the geisha and answer her questions. Move and think fast, for your minutes are numbered ... </p>
-        <button id="start-btn">Start the Game</button>
-    </div>
+                    <button class="option" id="op2">option2</button>
 
-    <div id="modal2">
-        <p>You died after <span id="died"></span> tiny seconds... Click the restart button to try again</p>
-        <button id="restart-btn">Try again</button>
-    </div>
-    <div id="victory"><p>You escaped the castle in <span id="timeVictory"></span> seconds!</p></div>
-    <!-- <div id="points"></div> -->
+                    <button class="option" id="op3">option3</button>
 
-    <audio
-        controls
-        src="/Ding-sound-effect.mp3" id="audio_otter"></audio>
-    </div>
+                    <button class="option" id="op4">option4</button>
+                </div>
+                <div class="navigation">
+                    <button class="submit_answer">Submit</button>
+                </div>
+                <div class="result">
+                </div>
+            </div>
+            <div class="geisha"></div>
+        </div>
+
+        <div id="modal">
+            <p>You're trapped in an haunted japanese castle. To unlock the door, you must collect the otters, then find
+                the geisha and answer her questions. Move and think fast, for your minutes are numbered ... Use the arrows to move around.</p>
+                <hr>
+                <form action="#" method="get">
+                    <div class="city_form">
+                      <label for="name">Enter the name of your city before starting : </label>
+                      <input type="text" name="city" id="city">
+                      <!-- <input type="submit" id="submitCity" value="Submit!"> -->
+                    </div>
+                  </form>
+                  <hr>
+                  <form action="#" method="get">
+                    <div class="name_form">
+                      <label for="name">Enter your name before starting : </label>
+                      <input type="text" name="name" id="username">
+                      <!-- <input type="submit" id="submitName" value="Submit!"> -->
+                    </div>
+                  </form>
+                  <hr>
+            <button id="start-btn">Start</button>
+        </div>
+
+        <div id="modal2">
+            <p>You died after <span id="died"></span> tiny seconds... Click the restart button to try again</p>
+            <button id="restart-btn">Try again</button>
+        </div>
+        <div id="victory">
+            <p>You escaped the castle in <span id="timeVictory"></span> seconds!</p>
+        </div>
+        <!-- <div id="points"></div> -->
+
+        <audio controls src="/Ding-sound-effect.mp3" id="audio_otter"></audio>
+        <audio controls src="/mixkit-heavy-rain-on-car-glass-interior-1248.wav" id="audioRain" loop="true" muted="true"></audio>
+        <audio controls src="/mixkit-natural-ambience-with-flowing-water-and-birds-61.wav" id="audioBird" loop="true" muted="true"></audio>
+    </div> -->
 </body>
-</html> 
 
-
+</html> -->

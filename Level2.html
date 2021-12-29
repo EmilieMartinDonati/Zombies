@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="module" src="./level2.js"></script>
+    <link rel="stylesheet" href="./level2.css">
+
+    <title>Level 2</title>
+</head>
+
+<body>
+
+    <div id="container" class="container bg-dark pl-1">
+        <div class="row justify-content-center pt-2 pb-2">
+            <h2 class="col-8 text-center text-light text-uppercase align-self-center">Eradicate the bats without losing
+                the ball at the bottom of the screen</h2>
+            <h1 id="homeCountDown" class="col-4 text-center text-danger align-self-center"></h1>
+        </div>
+
+        <div class="row justify-content-evenly pt-2 pb-5">
+            <canvas id="canvas_2" width="1000px" height="800px"></canvas>
+            <div class="col-1 h-25">
+                <button id="play" class="btn btn-primary btn-lg">REPLAY</button>
+                <hr>
+                <div class="card bg-info" id="failure" style="width: 18rem;">
+                    <img src="./bat.png" class="card-img-top" alt="bat">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-uppercase">Oh no.</h5>
+                        <p class="card-text text-center">You lost. Click play to start again</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="card bg-primary rounded" style="width: 18rem;">
+                    <img src="./bat2.png" class="card-img-top" alt="bat">
+                    <div class="card-body">
+                        <h5 class="card-title">Bats killed</h5>
+                        <p class="card-text" id="bat-counter">Waiting ...</p>
+                    </div>
+                </div>
+                <hr>
+                <button id="stop" class="btn btn-primary btn-lg align-self-end">INCREASE DIFFICULTY</button>
+                <hr>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

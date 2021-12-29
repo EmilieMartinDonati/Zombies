@@ -23,8 +23,9 @@ body {
   z-index: 2;
   left: auto;
   top: auto;
-  width: 40%;
-  height: 40%;
+  width: 1500px; 
+  height: 100vh; 
+  overflow: auto;
   overflow: auto;
   background-image: url("modal.jpg");
   background-size: cover;
@@ -32,6 +33,7 @@ body {
   opacity: 0.9;
   text-align: center;
   font-size: 1.5em;
+  padding: 100px;
 }
 
 #modal2 {
@@ -41,8 +43,8 @@ body {
   z-index: 2;
   left: auto;
   top: auto;
-  width: 40%;
-  height: 40%;
+  width: 1500px; 
+  height: 100vh; 
   overflow: auto;
   background-image: url("fantasy.jpg");
   background-size: cover;
@@ -51,6 +53,7 @@ body {
   opacity: 0.9;
   z-index: 4;
   font-size: 2em;
+  padding: 100px;
 }
 
 #other {
@@ -60,33 +63,27 @@ body {
   margin: 0;
 }
 
-#points {
-  width: 50%; 
-  height: 50%; 
-  z-index: 1;
-  overflow: auto;
-}
-
 #question_perso {
   visibility: hidden;
   position: fixed;
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   z-index: 2;
   top: auto;
-  left: 10%;
-  width: 1300px; 
-  height: 90%; 
+  left: auto;
+  width: 1500px; 
+  height: 100vh; 
   overflow: auto;
   border-radius: 30px;
   padding-top: 30px;
+  padding-left: 10px;
 }
 
 .panel {
   padding-top: 10%;
-  margin: 0;
-  width: 30%; 
-  height: 30%;
-  color: black;
+  padding-bottom: 10%;
+  color: grey;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
@@ -96,20 +93,13 @@ body {
 .geisha {
   background-image: url("geisha.png");
   background-size: cover;
-  width: 40%; 
-  height: 40%;
+  min-width: 700px;
+  min-height: 100vh;
 }
 
 #homeCountDown {
-  z-index: 4;
-  top: auto;
-  left: 50%;
-  width: 10%; 
-  height: 10%; 
-  text-align: center;
-  opacity: 0.9;
   padding-top: 10px;
-  font-size: 3em;
+  font-size: 2em;
   opacity: 0.8;
   color: maroon;
   font-weight: bolder;
@@ -126,7 +116,8 @@ button {
 .submit_answer {
   border-radius: 10px;
   padding: 2%;
-  background-color: black;
+  margin-left: 30%;
+  background-color: lightslategray;
   color: white;
 }
 
@@ -137,8 +128,8 @@ button {
   z-index: 2;
   left: auto;
   top: auto;
-  width: 40%;
-  height: 40%;
+  width: 1500px; 
+  height: 100vh; 
   overflow: auto;
   background-image: url("fantasy.jpg");
   background-size: cover;
@@ -159,6 +150,17 @@ button {
   text-align: center;
 }
 
+.result {
+  visibility: hidden;
+  border-radius: 10px;
+  margin: 1px;
+  background-color: midnightblue;
+  font-size: 1.2em;
+  color: white;
+  padding: 2%;
+  text-align: center;
+}
+
 #question {
   font-size: 1.2em;
   background-color: midnightblue;
@@ -168,19 +170,19 @@ button {
   text-align: center;
 }
 
-#otter_container {
+/* #otter_container {
   border: solid 1px black;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
-}
+} */
 
 #otter_container div {
-  min-width: 300px;
-  min-height: 100px;
-  border: black solid 1 px;
+  /* min-width: 300px;
+  min-height: 100px; */
+  /* border: black solid 1 px; */
   background-color: grey;
-  text-align: center;
+  /* text-align: center; */
 }
 
 #otter_container div img {
@@ -189,10 +191,12 @@ button {
 }
 
 #otterCounter {
-  font-size: 1.2em;
+  font-size: 2em;
   text-align: center;
+  padding-top: 1%;
 }
 
 audio {
   visibility: hidden;
 }
+
