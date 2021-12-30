@@ -1,8 +1,8 @@
 
-import Bat from './Bat.js';
+// import Bat from './Bat.js';
 
 const canvas2 = document.getElementById("canvas_2");
-const ctx = canvas2.getContext('2d');
+const ctx2 = canvas2.getContext('2d');
 
 const homeCountDown = document.getElementById("homeCountDown");
 
@@ -34,9 +34,9 @@ function reload() {
 
 const failure = document.getElementById("failure");
 
-function gameOver () {
+function gameOver2 () {
     clearInterval(ballInterval);
-    ctx.clearRect(0, 0, 1000, 800);
+    ctx2.clearRect(0, 0, 1000, 800);
     failure.style.visibility = "visible";
 }
 
@@ -47,18 +47,18 @@ class Square {
         this.vy = vy;
     }
     draw() {
-        ctx.fillStyle = "white";
-        ctx.fillRect(this.x, this.y, 100, 20);
+        ctx2.fillStyle = "white";
+        ctx2.fillRect(this.x, this.y, 100, 20);
     }
     move() {
         if (this.y < 2 || this.y > 700) {
-          ctx.clearRect(this.x, this.y, 100, 20);
+          ctx2.clearRect(this.x, this.y, 100, 20);
           this.vy *= -1;
           this.y += this.vy;
           this.draw();
         }
         else {
-          ctx.clearRect(this.x, this.y, 100, 20);
+          ctx2.clearRect(this.x, this.y, 100, 20);
           this.y += this.vy;
           this.draw();
         }
@@ -85,12 +85,61 @@ function generateSquares() {
 generateSquares();
 
 
-const aBat = new Bat(10, 1, 5);
-const batTwo = new Bat(800, 51, -5);
-const batThree = new Bat(300, 101, 5);
-const batFour = new Bat(600, 151, -5);
+class Bat {
+    constructor(x, y, vx) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx;
+      this.touched = false;
+      const img = new Image();
+    //   img.addEventListener('load', () => {
+        this.img = img;
+        img.src = './bat.png';
+        this.draw();
+    //   });
+    //   img.src = './bat.png';
+    }
+  
+    draw() {
+      ctx2.drawImage(this.img, this.x, this.y, 100, 100);
+      ctx2.rect(this.x, this.y, 100, 100);
+      ctx2.stroke();
+      ctx2.strokeStyle = 'blue';
+    }
+    move() {
+      if (this.x < 2 && this.touched === false || this.x > 800 && this.touched === false) {
+        ctx2.clearRect(this.x - 2, this.y - 2, 106, 106);
+        this.vx *= -1;
+        this.x += this.vx;
+        this.draw();
+        // squares.forEach(square => square.draw());
+      }
+      if (this.touched === true) {
+        ctx2.clearRect(this.x - 2, this.y - 2, 106, 106);
+      }
+      else {
+        ctx2.clearRect(this.x - 2, this.y - 2, 106, 106);
+        this.x += this.vx;
+        this.draw();
+        // squares.forEach(square => square.draw());
+      }
+    }
+  }
 
+  let bats = [];
+  function generateBats () {
+   let coordinatesBats = [
+       [10, 1, 5],
+       [800, 51, -5],
+       [300, 101, 5],
+       [600, 151, -5],
+   ]
+   for (let i = 0 ; i < coordinatesBats.length ; i ++) {
+        let aBat = new Bat(coordinatesBats[i][0], coordinatesBats[i][1], coordinatesBats[i][2]);
+        bats.push(aBat);
+   }}
 
+   generateBats();
 
 
 class Board {
@@ -100,16 +149,16 @@ class Board {
         this.vx = 7;
     }
     draw() {
-        ctx.fillStyle = "green";
-        ctx.fillRect(this.x, this.y, 100, 20);
+        ctx2.fillStyle = "green";
+        ctx2.fillRect(this.x, this.y, 100, 20);
     }
     moveLeft() {
-        ctx.clearRect(this.x, this.y, 100, 20);
+        ctx2.clearRect(this.x, this.y, 100, 20);
         this.x -= 20;
         this.draw();
     }
     moveRight() {
-        ctx.clearRect(this.x, this.y, 100, 20);
+        ctx2.clearRect(this.x, this.y, 100, 20);
         this.x += 20;
         this.draw();
     }
@@ -138,26 +187,26 @@ class Ball {
         this.vx = 8;
     }
     draw() {
-        ctx.fillStyle = "red";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 14, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fill();
+        ctx2.fillStyle = "red";
+        ctx2.beginPath();
+        ctx2.arc(this.x, this.y, 14, 0, 2 * Math.PI);
+        ctx2.stroke();
+        ctx2.fill();
     }
     move() {
-        ctx.clearRect(this.x - 16, this.y - 16, 32, 32);
+        ctx2.clearRect(this.x - 16, this.y - 16, 32, 32);
         this.y += this.vy;
         this.x += this.vx;
         this.draw();
     }
     rebound() {
-        ctx.clearRect(this.x - 16, this.y - 16, 32, 32);
+        ctx2.clearRect(this.x - 16, this.y - 16, 32, 32);
         this.vy *= -1;
         this.y += this.vy;
         this.draw();
     }
     reboundRightSide() {
-        ctx.clearRect(this.x - 14, this.y - 14, 28, 28);
+        ctx2.clearRect(this.x - 16, this.y - 16, 32, 32);
         this.vx *= -1;
         this.x += this.vx;
         this.draw();
@@ -171,17 +220,14 @@ aBall.draw();
 
 function ballUpdate() {
     killBats();
-    aBat.move();
-    batTwo.move();
-    batThree.move();
-    batFour.move();
+    bats.forEach(bat => bat.move());
     squares.forEach(square => square.move());
     squares.forEach(function(square) {
-        if (Math.abs(square.x - aBall.x) < 100 && Math.abs(square.y - aBall.y) < 14) {
+        if (Math.abs(square.x - aBall.x) < 73 && Math.abs(square.y - aBall.y) < 20) {
          aBall.rebound();
                 }
     });
-    if (Math.abs(myBoard.x - aBall.x) < 100 && Math.abs(myBoard.y - aBall.y) < 30) {
+    if (Math.abs(myBoard.x - aBall.x) < 100 && Math.abs(myBoard.y - aBall.y) < 40) {
         aBall.rebound();
     }
     else if (aBall.y < 2) {
@@ -191,7 +237,7 @@ function ballUpdate() {
         aBall.reboundRightSide();
     }
     else if(aBall.y > 800) {
-        gameOver();
+        gameOver2();
     }
     else {
         aBall.move();
@@ -202,38 +248,14 @@ const batCounter = document.getElementById("bat-counter");
 
 let counter = 0;
 function killBats() {
-    if (Math.abs(aBall.x - aBat.x) === 100 && Math.abs(aBall.y - aBat.y) === 100) {
-        aBat.img.src = './ninja.png';
-        counter += 1;
-        batCounter.innerHTML = counter;
-    }
-    if (Math.abs(aBall.x - batTwo.x) === 100 && Math.abs(aBall.y - batTwo.y) === 100) {
-        batTwo.img.src = './ninja.png';
-        counter += 1;
-        batCounter.innerHTML = counter;
-    }
-    if (Math.abs(aBall.x - batThree.x) === 100 && Math.abs(aBall.y - batThree.y) === 100) {
-        batThree.img.src = './ninja.png';
-        counter += 1;
-        batCounter.innerHTML = counter;
-    }
-    if (Math.abs(aBall.x - batFour.x) === 100 && Math.abs(aBall.y - batFour.y) === 100) {
-        batFour.img.src = './ninja.png';
-        counter += 1;
-        batCounter.innerHTML = counter;
-    }
-//     if (Math.abs(aBall.x - aBat.x) < 102 && Math.abs(aBall.y - aBat.y) < 102) {
-//        aBall.rebound();
-//     }
-//     if (Math.abs(aBall.x - batTwo.x) < 102 && Math.abs(aBall.y - batTwo.y) < 102) {
-//         aBall.rebound();
-//      }
-//      if (Math.abs(aBall.x - batThree.x) < 102 && Math.abs(aBall.y - batThree.y) < 102) {
-//         aBall.rebound();
-//      }
-//      if (Math.abs(aBall.x - batFour.x) < 102 && Math.abs(aBall.y - batFour.y) < 102) {
-//         // aBall.rebound();
-//      }
+    bats.forEach(function(bat) {
+        if (aBall.x > bat.x && aBall.x < bat.x + 100 && aBall.y > bat.y && aBall.y < bat.y + 100) {
+            bat.img.src = './bat2.png';
+            counter += 1;
+            batCounter.innerHTML = counter;
+            bat.touched = true;
+        }
+    })
 }
 
 
@@ -241,6 +263,6 @@ const ballInterval = setInterval(ballUpdate, 70);
 
 
 export { squares };
-export { ctx };
+export { ctx2 };
 
 

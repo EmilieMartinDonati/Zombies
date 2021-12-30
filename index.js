@@ -51,10 +51,15 @@ const modal = document.getElementById("modal");
 const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", modalStartVisibilityHandler);
 function modalStartVisibilityHandler() {
+  if (username.value.length > 0 && chosenCity.value.length > 0) {
   modal.style.visibility = "hidden";
   play();
   getWeather();
   getName();
+  }
+  else {
+    document.getElementById("warning").innerHTML = "FILL IN BEFORE STARTING";
+  }
 }
 
 const modal2 = document.getElementById('modal2');
@@ -477,6 +482,13 @@ function play() {
 }
 
 
-
 export { ctx };
+
+
+// LEVEL 2
+
+
+
+
+
 
