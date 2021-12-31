@@ -27,12 +27,14 @@ async function getWeather() {
     rain.muted = false;
     bird.pause();
     bird.muted = true;
+    document.getElementById("howWeather").innerHTML = `It's raining in ${chosenCity.value}`;
   }
   else {
     rain.pause();
     rain.muted = true;
     bird.play();
     bird.muted = false;
+    document.getElementById("howWeather").innerHTML = `Cloudless weather in ${chosenCity.value}`;
   }
 }
 
@@ -52,27 +54,48 @@ const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", modalStartVisibilityHandler);
 function modalStartVisibilityHandler() {
   if (username.value.length > 0 && chosenCity.value.length > 0) {
-  modal.style.visibility = "hidden";
-  play();
-  getWeather();
-  getName();
+    modal.style.visibility = "hidden";
+    document.getElementById("controls").classList.remove("col-2");
+    document.getElementById("controls").classList.add("col-1");
+    document.getElementById("quizz").classList.remove("col-2");
+    document.getElementById("quizz").classList.add("col-3");
+    play();
+    getWeather();
+    getName();
   }
   else {
     document.getElementById("warning").innerHTML = "FILL IN BEFORE STARTING";
   }
 }
 
-const modal2 = document.getElementById('modal2');
 
+// Canvas generation.
+
+const canvas = document.getElementById("other");
+const ctx = canvas.getContext('2d');
+
+// Modal handlers, for start, restart, etc.
+
+
+let done = false;
+let dead = false;
+
+//Restart modal logic.
+
+// const restartModal = document.getElementById('modal-restart').modal({ show: false});
+
+let restartModal = new bootstrap.Modal(document.getElementById('modal-restart'), {});
 const restartBtn = document.getElementById("restart-btn");
+const died = document.getElementById("died");
 
 
 function modalRestartVisibilityHandler() {
-  modal2.style.visibility = "visible";
-  modal.style.visibility = "hidden";
-  canvas.style.opacity = 0.3;
-  question.style.visibility = "hidden";
-  dead = true;
+  restartModal.show();
+  canvas.style.opacity = "0.2";
+}
+
+if (dead === true) {
+  modalRestartVisibilityHandler()
 }
 
 function refresh() {
@@ -81,75 +104,71 @@ function refresh() {
 
 restartBtn.addEventListener("click", refresh);
 
-const question = document.getElementById("question_perso");
-const victory = document.getElementById("victory");
+// Victory logic.
+
+let victory = new bootstrap.Modal(document.getElementById('victory'), {});
 const timeVictory = document.getElementById("timeVictory");
-const died = document.getElementById("died");
-
-const canvas = document.getElementById("other");
-const ctx = canvas.getContext('2d');
-
-let done = false;
-let dead = false;
-
 function openDoor() {
-  question.style.visibility = "hidden";
-  modal2.style.visibility = "hidden";
-  victory.style.visibility = "visible";
-  done = true;
-  dead = false;
+  canvas.style.opacity = "0.2";
+  victory.show();
   setTimeout(function () {
     window.location = "./Level2.html";
   }, 3000)
 }
 
+if (done === true) {
+  openDoor();
+}
+
+// Quizz logic.
+
+const question = document.getElementById("question_perso");
+
 
 function displayQuizz() {
-
   question.style.visibility = "visible";
-  console.log("display");
   canvas.style.opacity = "0.2";
-  document.getElementById("homeCountDown").color = "red";
+  // document.getElementById("homeCountDown").color = "red";
 }
 
 
 const Questions = [{
   id: 0,
-  q: "In which discipline does Marie-Claude Pietragalla work?",
-  a: [{ text: "Tennis", isCorrect: false },
-  { text: "Marathon", isCorrect: false },
-  { text: "Ballet", isCorrect: true },
-  { text: "Sculpture", isCorrect: false }
+  q: "What is the main characteristic of poltergeists?",
+  a: [{ text: "They take the shape of your pets", isCorrect: false },
+  { text: "They only dwell in attics", isCorrect: false },
+  { text: "They bang on surfaces to attract your attention", isCorrect: true },
+  { text: "They are german", isCorrect: false }
   ]
 
 },
 {
   id: 1,
-  q: "What is the capital of Thailand?",
-  a: [{ text: "Lampang", isCorrect: false, isSelected: false },
-  { text: "Phuket", isCorrect: false },
-  { text: "Ayutthaya", isCorrect: false },
-  { text: "Bangkok", isCorrect: true }
+  q: "What diseases do bats carry ?",
+  a: [{ text: "They are deaf from one ear due to a genetic evolution", isCorrect: false, isSelected: false },
+  { text: "Depression", isCorrect: false },
+  { text: "Tuberculosis", isCorrect: false },
+  { text: "The rabbies", isCorrect: true }
   ]
 
 },
 {
   id: 2,
-  q: "What is the PH of the Coca Cola ?",
-  a: [{ text: "2,8", isCorrect: false, isSelected: false },
-  { text: "3,9", isCorrect: false },
-  { text: "7", isCorrect: false },
-  { text: "2,5", isCorrect: true }
+  q: "Which one of those is most definitely not a japanese ghost ?",
+  a: [{ text: "Yuki-onna", isCorrect: false, isSelected: false },
+  { text: "Jorogumo", isCorrect: false },
+  { text: "Yamauba", isCorrect: false },
+  { text: "Sushi", isCorrect: true }
   ]
 
 },
 {
   id: 3,
-  q: "What's the name of Mozart's archenemy?",
-  a: [{ text: "Verdi", isCorrect: false, isSelected: false },
-  { text: "Bellini", isCorrect: false },
-  { text: "Salieri", isCorrect: true },
-  { text: "Wagner", isCorrect: false }
+  q: "Which one of those is a japanese dagger ?",
+  a: [{ text: "Kawai", isCorrect: false, isSelected: false },
+  { text: "Maki", isCorrect: false },
+  { text: "Katana", isCorrect: true },
+  { text: "Seppuku", isCorrect: false }
   ]
 
 },
@@ -160,7 +179,7 @@ var start = true;
 
 function iterate(id) {
 
-  var result = document.getElementsByClassName("result");
+  const result = document.getElementsByClassName("result");
   result[0].innerText = "";
 
   const question = document.getElementById("question");
@@ -184,46 +203,32 @@ function iterate(id) {
 
   var selected = "";
 
-  // Show selection for op1
-  op1.addEventListener("click", () => {
-    selected = op1.value;
-  })
+  let allOptions = document.querySelectorAll(".option");
+  console.log(allOptions);
+  console.log(allOptions[0]);
 
-  // Show selection for op2
-  op2.addEventListener("click", () => {
-    selected = op2.value;
-  })
+  function checkAccuracy (e) {
+    let thisOption = e.target;
+    if (thisOption.value === "true") {
+            result[0].style.visibility = "hidden";
+            start = false;
+            if (id < 3) {
+              id++;
+              iterate(id);
+              console.log(id);
+            }
+            else if (id = 3) {
+              done = true;
+              openDoor();
+            }
+          }
+          else {
+            result[0].innerHTML = "Wrong answer.";
+            result[0].style.visibility = "visible";
+          }
+        }
 
-  // Show selection for op3
-  op3.addEventListener("click", () => {
-    selected = op3.value;
-  })
-
-  // Show selection for op4
-  op4.addEventListener("click", () => {
-    selected = op4.value;
-  })
-
-  const submitAnswer = document.getElementsByClassName("submit_answer");
-
-  submitAnswer[0].addEventListener("click", () => {
-    if (selected == "true") {
-      result[0].style.visibility = "hidden";
-      start = false;
-      if (id < 3) {
-        id++;
-        iterate(id);
-        console.log(id);
-      }
-      else if (id = 3) {
-        openDoor();
-      }
-    }
-    else {
-      result[0].innerHTML = "Wrong answer.";
-      result[0].style.visibility = "visible";
-    }
-  })
+  Array.from(allOptions).forEach((el) => (el.addEventListener("click", checkAccuracy)));
 }
 
 if (start) {
@@ -233,48 +238,52 @@ var id = 0;
 
 
 
-var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+// var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
-function preventDefault(e) {
-  e.preventDefault();
-}
+// function preventDefault(e) {
+//   e.preventDefault();
+// }
 
-function preventDefaultForScrollKeys(e) {
-  if (keys[e.keyCode]) {
-    preventDefault(e);
-    return false;
-  }
-}
+// function preventDefaultForScrollKeys(e) {
+//   if (keys[e.keyCode]) {
+//     preventDefault(e);
+//     return false;
+//   }
+// }
 
-// modern Chrome requires { passive: false } when adding event
-var supportsPassive = false;
-try {
-  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-    get: function () { supportsPassive = true; }
-  }));
-} catch (e) { }
+// // modern Chrome requires { passive: false } when adding event
+// var supportsPassive = false;
+// try {
+//   window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+//     get: function () { supportsPassive = true; }
+//   }));
+// } catch (e) { }
 
-var wheelOpt = supportsPassive ? { passive: false } : false;
-var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+// var wheelOpt = supportsPassive ? { passive: false } : false;
+// var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
-// call this to Disable
-function disableScroll() {
-  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// // call this to Disable
+// function disableScroll() {
+//   window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+//   window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+//   window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+//   window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
-disableScroll();
+// disableScroll();
 
-function enableScroll() {
-  window.removeEventListener('DOMMouseScroll', preventDefault, false);
-  window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
-  window.removeEventListener('touchmove', preventDefault, wheelOpt);
-  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-}
+// function enableScroll() {
+//   window.removeEventListener('DOMMouseScroll', preventDefault, false);
+//   window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+//   window.removeEventListener('touchmove', preventDefault, wheelOpt);
+//   window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+// }
 
-//
+// //
+
+// Canvas logic.
+
+let timeExpired = false;
 
 function play() {
   const homeCountDown = document.getElementById("homeCountDown");
@@ -289,6 +298,9 @@ function play() {
         timeVictory.textContent = 40 - count;
         died.textContent = 40 - count;
         localStorage.setItem('timeFirstLevel', (40 - count).toString());
+        if (count === limit) {
+          timeExpired = true;
+        }
         if (count === limit) resolve(id);
         if (done) resolve(id);
         if (dead) resolve(id);
@@ -299,7 +311,9 @@ function play() {
   timerHome(0)
     .then((id) => {
       clearInterval(id);
-      modalRestartVisibilityHandler();
+      if (timeExpired) {
+        modalRestartVisibilityHandler();
+      }
     });
 
 
@@ -331,7 +345,7 @@ function play() {
     generateOtters();
   }
 
-  const otterCounter = document.getElementById("otterCounter");
+  const otterCounter = document.querySelector("#otterCounter h4");
 
   console.log(otterArray);
 
@@ -352,7 +366,7 @@ function play() {
         otterAudio.play();
       }
     }
-    otterCounter.textContent = countOtter;
+    otterCounter.textContent = `Number of otters collected : ${countOtter}`;
   }
 
 
@@ -419,6 +433,11 @@ function play() {
 
   document.addEventListener('keydown', e => {
     switch (e.keyCode) {
+      case 77:
+        let audios = document.querySelectorAll("audio");
+        [...audios].forEach((audio) => audio.pause());
+        console.log("yo");
+        break;
       case 38:
         player.moveUp();
         console.log('up', player);
@@ -453,6 +472,7 @@ function play() {
   function GameOver() {
     ctx.clearRect(0, 0, 1500, 1000);
     modalRestartVisibilityHandler();
+    dead = true;
   }
 
   class Prize {
@@ -484,8 +504,6 @@ function play() {
 
 export { ctx };
 
-
-// LEVEL 2
 
 
 

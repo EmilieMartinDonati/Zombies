@@ -119,3 +119,7 @@
       max-height: 20px;
       visibility: hidden;
   }
+
+  #mute {
+    display: inline-block;
+  }

@@ -17,9 +17,9 @@
 
 <body>
 
-    <div id="container-level2" class="container bg-dark pl-1">
+    <div id="container-level2" class="container pl-1">
         <div class="row justify-content-center pt-2 pb-2">
-            <h2 class="col-8 text-center text-light text-uppercase align-self-center">Eradicate the bats without losing
+            <h2 class="col-8 text-center text-uppercase align-self-center">Eradicate the bats without losing
                 the ball at the bottom of the screen</h2>
             <h1 id="homeCountDown" class="col-4 text-center text-danger align-self-center"></h1>
         </div>
@@ -27,25 +27,25 @@
         <div class="row justify-content-evenly pt-2 pb-5">
             <canvas id="canvas_2" width="1000px" height="800px"></canvas>
             <div class="col-1 h-25">
-                <button id="play" class="btn btn-primary btn-lg">REPLAY</button>
+                <button id="play" class="btn btn-danger btn-lg">REPLAY</button>
                 <hr>
-                <div class="card bg-info" id="failure" style="width: 18rem;">
+                <div class="card" id="failure" style="width: 18rem;">
                     <img src="./bat.png" class="card-img-top" alt="bat">
-                    <div class="card-body">
+                    <div class="card-body text-white">
                         <h5 class="card-title text-center text-uppercase">Oh no.</h5>
-                        <p class="card-text text-center">You lost. Click play to start again</p>
+                        <p class="card-text text-center">You lost. Click replay to start again</p>
                     </div>
                 </div>
                 <hr>
-                <div class="card bg-primary rounded" style="width: 18rem;">
-                    <img src="./bat2.png" class="card-img-top" alt="bat">
-                    <div class="card-body">
-                        <h5 class="card-title">Bats killed</h5>
-                        <p class="card-text" id="bat-counter">Waiting ...</p>
+                <div class="card rounded" style="width: 18rem;" id="victory">
+                    <img src="./Bat2.png" class="card-img-top" alt="bat">
+                    <div class="card-body text-white">
+                        <h5 class="card-title">Yay</h5>
+                        <p class="card-text" id="bat-counter">You won in <span id="timeVictory"></span> seconds.</p>
                     </div>
                 </div>
                 <hr>
-                <button id="stop" class="btn btn-primary btn-lg align-self-end">INCREASE DIFFICULTY</button>
+                <button id="stop" class="btn btn-danger btn-lg align-self-end">INCREASE DIFFICULTY</button>
                 <hr>
             </div>
         </div>

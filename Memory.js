@@ -7,6 +7,12 @@ containerCards.style.flexDirection = "row";
 containerCards.style.justifyContent = "center";
 const playBtn = document.getElementById("btn-play");
 
+const victoryElem = document.getElementById("cardbody");
+const homeCountDown = document.getElementById("homecountdown");
+const timeVictory = document.getElementById("timeVictory");
+
+const controlsElem = document.getElementById("controls");
+
 let array = [
     {
         name: 'zombie',
@@ -23,8 +29,8 @@ let array = [
         clicked: true,
     },
     {
-        name: 'mandala',
-        recto: "./mandala.png",
+        name: 'prize',
+        recto: "./prize.png",
         verso: "./questionMark.png",
         isRecto: false,
         clicked: false,
@@ -66,6 +72,27 @@ let array = [
     }
 ]
 
+
+function timerHome(limit) {
+    return new Promise((resolve, reject) => {
+      let count = 200;
+      let id = setInterval(() => {
+        count--;
+        console.log(count);
+        homeCountDown.textContent = count;
+        timeVictory.textContent = 200 - count;
+        localStorage.setItem('timeThirdLevel', (200 - count).toString());
+        if (count === limit) resolve(id);
+        if (done === true) resolve(id);
+      }, 1000);
+    });
+  }
+
+  timerHome(0)
+    .then((id) => {
+      clearInterval(id);
+    });
+
 let cards = [];
 
 
@@ -86,24 +113,26 @@ shuffleArray(cards);
 let myCards;
 
 function createCards() {
+    controlsElem.classList.remove("col-3");
+    controlsElem.classList.add("col-2")
     for (let i = 0; i < cards.length; i++) {
         let div = document.createElement("div");
         div.className = `card_${cards[i].name}`;
         div.id = `${cards[i].url}`;
         div.style.display = "inline-block";
         div.style.margin = "40px";
-        div.style.width = "100px";
-        div.style.height = "120px";
+        div.style.width = "15%";
+        div.style.height = "140px";
         div.style.borderRadius = "10px";
         div.style.backgroundColor = "black";
         let img = document.createElement("img");
         img.src = cards[i].verso;
         img.id = cards[i].recto;
         img.className = i;
-        img.style.width = "100px";
-        img.style.height = "120px";
+        img.style.width = "100%";
+        img.style.height = "140px";
         img.style.borderRadius = "10px";
-        img.style.border = "blue dotted 2px";
+        img.style.border = "blue groove 5px";
         div.appendChild(img);
         containerCards.appendChild(div);
         console.log(typeof img.className);
@@ -115,7 +144,14 @@ function createCards() {
 let cardClicked = [];
 console.log(cardClicked.length);
 
-let victoryCounter = 0;
+let done = false;
+
+function victory () {
+    victoryElem.style.visibility = "visible";
+    done = true;
+    myDivs = document.querySelectorAll("#container-cards div");
+    [...myDivs].forEach((div) => div.remove())
+}
 
 
 function toggleHandler(event) {
@@ -126,47 +162,35 @@ function toggleHandler(event) {
     // card.className = "clicked";
     card.isRecto = true;
     let arrIntermediary = [];
-    // console.log(cardClicked, cardClicked.length, cardClicked[1]);
-    // if (cardClicked.length >= 2) {
-    //     cardClicked.shift();
-    // }
-    // else if (cardClicked[0].src === cardClicked[1].src) {
-    //     cardClicked[0].style.backgroundColor = "green";
-    //         cardClicked[1].style.backgroundColor = "green";
-    //         cardClicked[0].src = cardClicked[0].id;
-    //         cardClicked[1].src = cardClicked[1].id;
-    //         counterVictory += 1;
-    //         console.log(counterVictory);
-    // }
     for (let i = 1; i < cardClicked.length; i++) {
         console.log(cardClicked[i - 1].id, cardClicked[i].id);
 
         if ((cardClicked[i].id === cardClicked[i - 1].id) && Number(cardClicked[i].className) !== Number(cardClicked[i - 1].className) && cardClicked[i].backgroundColor !== "green" && cardClicked[i - 1].backgroundColor !== "green") {
-            cardClicked[i - 1].style.backgroundColor = "green";
-            cardClicked[i].style.backgroundColor = "green";
+            cardClicked[i - 1].style.backgroundColor = "blue";
+            cardClicked[i].style.backgroundColor = "blue";
             cardClicked[i - 1].src = cardClicked[i - 1].id;
             cardClicked[i].src = cardClicked[i].id;
+            if (arrIntermediary.includes(cardClicked[i]) === false) {
+                arrIntermediary.push(cardClicked[i]);
+            }
+            if (arrIntermediary.includes(cardClicked[i - 1]) === false) {
+                arrIntermediary.push(cardClicked[i - 1]);
+            }
         }
+    }
+    if (arrIntermediary.length === 16) {
+        victory();
     }
 
     const myInterval = setInterval(function toggleBack() {
-        if (event.target.style.backgroundColor !== "green") {
+        if (event.target.style.backgroundColor !== "blue") {
             event.target.src = mystery;
             event.target.isRecto = false;
         }
-    }, 4000)
+    }, 2000)
 }
 
 
-function Victory() {
-    myCards = document.querySelectorAll("#container-cards div img");
-    [...myCards].forEach(function checkVictory(elem) {
-        if (elem.style.backgroundColor === "green") {
-            victoryCounter += 1;
-            console.log(victoryCounter);
-        }
-    })
-}
 
 playBtn.addEventListener("click", createCards);
 

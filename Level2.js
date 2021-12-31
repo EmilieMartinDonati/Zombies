@@ -6,6 +6,10 @@ const ctx2 = canvas2.getContext('2d');
 
 const homeCountDown = document.getElementById("homeCountDown");
 
+const victory = document.getElementById("victory");
+
+const timeVictory = document.getElementById("timeVictory");
+
 
 document.getElementById("play").addEventListener('click', reload);
 function reload() {
@@ -20,8 +24,11 @@ function reload() {
         count--;
         console.log(count);
         homeCountDown.textContent = count;
+        timeVictory.textContent = 40 - count;
         localStorage.setItem('timeSecondLevel', (40 - count).toString());
         if (count === limit) resolve(id);
+        if (done === true) resolve(id);
+        if (dead === true) resolve(id);
       }, 1000);
     });
   }
@@ -29,7 +36,9 @@ function reload() {
   timerHome(0)
     .then((id) => {
       clearInterval(id);
-      gameOver();
+      if (done === false) {
+      gameOver2();
+      }
     });
 
 const failure = document.getElementById("failure");
@@ -218,7 +227,19 @@ class Ball {
 const aBall = new Ball(50, 50);
 aBall.draw();
 
+function openDoor2 () {
+    window.location = "./Memory.html";
+}
+
 function ballUpdate() {
+    const isTouched = (elem) => elem.touched === true;
+    if (bats.every(isTouched)) {
+        victory.style.visibility = "visible";
+        ctx2.clearRect(0, 0, 1000, 800);
+        done = true;
+        const victoryInterval = setInterval(openDoor2, 4000);
+    }
+    else {
     killBats();
     bats.forEach(bat => bat.move());
     squares.forEach(square => square.move());
@@ -238,25 +259,28 @@ function ballUpdate() {
     }
     else if(aBall.y > 800) {
         gameOver2();
+        dead = true;
     }
     else {
         aBall.move();
     }
 }
+}
 
 const batCounter = document.getElementById("bat-counter");
 
-let counter = 0;
+let done = false;
+let dead = false;
+
 function killBats() {
     bats.forEach(function(bat) {
         if (aBall.x > bat.x && aBall.x < bat.x + 100 && aBall.y > bat.y && aBall.y < bat.y + 100) {
             bat.img.src = './bat2.png';
-            counter += 1;
-            batCounter.innerHTML = counter;
             bat.touched = true;
         }
     })
 }
+
 
 
 const ballInterval = setInterval(ballUpdate, 70);

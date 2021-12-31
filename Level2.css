@@ -3,8 +3,23 @@
     background-size: cover;
     width: 1000px;
     height: 800px;
+    color: rgb(2, 0, 19);
   }
   
+#container-level2 {
+  background-color: rgb(2, 0, 19);
+  color: blue;
+}
 #failure {
   visibility: hidden;
+}
+
+#victory {
+  visibility: hidden;
+}
+
+#victory, #failure {
+  background-color: blue;
+  font-size: 1.2em;
+  font-weight: bolder;
 }
