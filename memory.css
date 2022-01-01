@@ -8,7 +8,11 @@
 
 #card {
     background-color: rgb(2, 0, 19);
-    /* visibility: hidden; */
+}
+
+#card-2 {
+  visibility: hidden;
+  background-color: rgb(2, 0, 19);
 }
 
 #cardbody {

@@ -8,7 +8,7 @@ class Otter {
         this.x = Math.floor(Math.random() * 1399) + 1;
         this.y = Math.floor(Math.random() * 899) + 1;
         const img = new Image();
-        img.src = './Otter.png';
+        img.src = './imagesFirstLevel/Otter.png';
         this.img = img;
         this.draw();
     }

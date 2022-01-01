@@ -82,7 +82,6 @@ let dead = false;
 
 //Restart modal logic.
 
-// const restartModal = document.getElementById('modal-restart').modal({ show: false});
 
 let restartModal = new bootstrap.Modal(document.getElementById('modal-restart'), {});
 const restartBtn = document.getElementById("restart-btn");
@@ -204,8 +203,6 @@ function iterate(id) {
   var selected = "";
 
   let allOptions = document.querySelectorAll(".option");
-  console.log(allOptions);
-  console.log(allOptions[0]);
 
   function checkAccuracy (e) {
     let thisOption = e.target;
@@ -359,9 +356,8 @@ function play() {
   function pickOtters() {
     for (let i = 0; i < otterArray.length; i++) {
       if (Math.abs(otterArray[i].y - player.y) < 70 && Math.abs(otterArray[i].x - player.x) < 70 && otterArray[i].collected === false) {
-        // console.log("rescued otters");
         countOtter += 1;
-        otterDisplay[i].src = "./otterDrawing.jpg";
+        otterDisplay[i].src = "./imagesFirstLevel/otterDrawing.jpg";
         otterArray[i].collected = true;
         otterAudio.play();
       }
@@ -407,7 +403,7 @@ function play() {
       this.x = 30;
       this.y = 30;
       const imgPlayer = new Image();
-      imgPlayer.src = './man-g8ee15bac5_640.png';
+      imgPlayer.src = './imagesFirstLevel/man-g8ee15bac5_640.png';
       this.img = imgPlayer;
       this.draw();
     }
@@ -480,7 +476,7 @@ function play() {
       this.x = x;
       this.y = y;
       const img = new Image();
-      img.src = './geisha.png';
+      img.src = './images-all-level/geisha.png';
       this.img = img;
       this.draw();
     }

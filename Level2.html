@@ -17,7 +17,7 @@
 
 <body>
 
-    <div id="container-level2" class="container pl-1">
+    <div id="container-level2" class="container-fluid pl-1">
         <div class="row justify-content-center pt-2 pb-2">
             <h2 class="col-8 text-center text-uppercase align-self-center">Eradicate the bats without losing
                 the ball at the bottom of the screen</h2>
@@ -25,12 +25,19 @@
         </div>
 
         <div class="row justify-content-evenly pt-2 pb-5">
+            <div class="col-1 text-white">
+                <h3 id="storyline" class="h-25 text-danger pt-3">Outside you find yourself in a thick and foggy forest and you're attacked by deadly bats.</h3>
+                <hr>
+                    <h4 class="h-25 pt-3">Annihilate them using the paddle and the ball. Click on the screen and use the left and right arrows to move the paddle</h4>
+                    <hr>
+                    <button id="start-btn" class="btn btn-danger btn-lg mt-3">START</button>
+            </div>
             <canvas id="canvas_2" width="1000px" height="800px"></canvas>
             <div class="col-1 h-25">
                 <button id="play" class="btn btn-danger btn-lg">REPLAY</button>
                 <hr>
                 <div class="card" id="failure" style="width: 18rem;">
-                    <img src="./bat.png" class="card-img-top" alt="bat">
+                    <img src="./images-all-level/bat.png" class="card-img-top" alt="bat">
                     <div class="card-body text-white">
                         <h5 class="card-title text-center text-uppercase">Oh no.</h5>
                         <p class="card-text text-center">You lost. Click replay to start again</p>
@@ -38,7 +45,7 @@
                 </div>
                 <hr>
                 <div class="card rounded" style="width: 18rem;" id="victory">
-                    <img src="./Bat2.png" class="card-img-top" alt="bat">
+                    <img src="./images-all-level/Bat2.png" class="card-img-top" alt="bat">
                     <div class="card-body text-white">
                         <h5 class="card-title">Yay</h5>
                         <p class="card-text" id="bat-counter">You won in <span id="timeVictory"></span> seconds.</p>

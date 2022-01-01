@@ -1,13 +1,17 @@
 
-// import Bat from './Bat.js';
+//Retrieve local storage from level 1.
+
+const playerName = localStorage.getItem("player");
+
+console.log(playerName);
+
+//
 
 const canvas2 = document.getElementById("canvas_2");
 const ctx2 = canvas2.getContext('2d');
 
 const homeCountDown = document.getElementById("homeCountDown");
-
 const victory = document.getElementById("victory");
-
 const timeVictory = document.getElementById("timeVictory");
 
 
@@ -16,13 +20,14 @@ function reload() {
     window.location.reload();
 }
 
+document.getElementById("start-btn").addEventListener('click', play);
 
+function play () {
   function timerHome(limit) {
     return new Promise((resolve, reject) => {
       let count = 40;
       let id = setInterval(() => {
         count--;
-        console.log(count);
         homeCountDown.textContent = count;
         timeVictory.textContent = 40 - count;
         localStorage.setItem('timeSecondLevel', (40 - count).toString());
@@ -103,7 +108,7 @@ class Bat {
       const img = new Image();
     //   img.addEventListener('load', () => {
         this.img = img;
-        img.src = './bat.png';
+        img.src = './images-all-level/bat.png';
         this.draw();
     //   });
     //   img.src = './bat.png';
@@ -275,7 +280,7 @@ let dead = false;
 function killBats() {
     bats.forEach(function(bat) {
         if (aBall.x > bat.x && aBall.x < bat.x + 100 && aBall.y > bat.y && aBall.y < bat.y + 100) {
-            bat.img.src = './bat2.png';
+            bat.img.src = './images-all-level/Bat2.png';
             bat.touched = true;
         }
     })
@@ -285,8 +290,8 @@ function killBats() {
 
 const ballInterval = setInterval(ballUpdate, 70);
 
-
-export { squares };
-export { ctx2 };
+}
+// export { squares };
+// export { ctx2 };
 
 

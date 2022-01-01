@@ -1,97 +1,93 @@
+// Retrieve local storage.
+
+const playerName = localStorage.getItem("player");
+document.getElementById("user_intel").innerHTML = `Hello ${playerName}`;
+
+let totTimeOnThird = Number(localStorage.getItem("timeFirstLevel")) + Number(localStorage.getItem("timeSecondLevel"));
+
+
+
+const victoryElem = document.getElementById("cardbody");
+const homeCountDown = document.getElementById("homecountdown");
+const timeVictory = document.getElementById("timeVictory");
+
+
+
+
 // 1. Logique play qui va créer les blocks.
 
-const mystery = "./questionMark.png";
+const mystery = "./imagesMemo/questionMark.png";
 const containerCards = document.getElementById("container-cards");
 containerCards.style.display = "flex wrap";
 containerCards.style.flexDirection = "row";
 containerCards.style.justifyContent = "center";
 const playBtn = document.getElementById("btn-play");
 
-const victoryElem = document.getElementById("cardbody");
-const homeCountDown = document.getElementById("homecountdown");
-const timeVictory = document.getElementById("timeVictory");
+
 
 const controlsElem = document.getElementById("controls");
 
 let array = [
     {
         name: 'zombie',
-        recto: "./bat.png",
-        verso: "./questionMark.png",
+        recto: "./images-all-level/bat.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'geisha',
-        recto: "./geisha.png",
-        verso: "./questionMark.png",
+        recto: "./images-all-level/geisha.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: true,
     },
     {
         name: 'prize',
-        recto: "./prize.png",
-        verso: "./questionMark.png",
+        recto: "./imagesMemo/prize.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'bat2',
-        recto: "./bat2.png",
-        verso: "./questionMark.png",
+        recto: "./images-all-level/Bat2.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'ghost',
-        recto: "./tux-161365_640.png",
-        verso: "./questionMark.png",
+        recto: "./images-all-level/tux-161365_640.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'cherry',
         recto: "./imagesMemo/cherrytree.png",
-        verso: "./questionMark.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'samurai',
         recto: "./imagesMemo/samuray.png",
-        verso: "./questionMark.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     },
     {
         name: 'rabbits',
         recto: "./imagesMemo/rabbits.png",
-        verso: "./questionMark.png",
+        verso: "./imagesMemo/questionMark.png",
         isRecto: false,
         clicked: false,
     }
 ]
 
 
-function timerHome(limit) {
-    return new Promise((resolve, reject) => {
-      let count = 200;
-      let id = setInterval(() => {
-        count--;
-        console.log(count);
-        homeCountDown.textContent = count;
-        timeVictory.textContent = 200 - count;
-        localStorage.setItem('timeThirdLevel', (200 - count).toString());
-        if (count === limit) resolve(id);
-        if (done === true) resolve(id);
-      }, 1000);
-    });
-  }
 
-  timerHome(0)
-    .then((id) => {
-      clearInterval(id);
-    });
 
 let cards = [];
 
@@ -113,6 +109,30 @@ shuffleArray(cards);
 let myCards;
 
 function createCards() {
+
+    playBtn.disabled = true;
+
+    function timerHome(limit) {
+        return new Promise((resolve, reject) => {
+          let count = 200;
+          let id = setInterval(() => {
+            count--;
+            console.log(count);
+            homeCountDown.textContent = count;
+            timeVictory.textContent = 200 - count;
+            localStorage.setItem('timeThirdLevel', (200 - count).toString());
+            if (count === limit) resolve(id);
+            if (done === true) resolve(id);
+          }, 1000);
+        });
+      }
+    
+      timerHome(0)
+        .then((id) => {
+          clearInterval(id);
+        });
+
+
     controlsElem.classList.remove("col-3");
     controlsElem.classList.add("col-2")
     for (let i = 0; i < cards.length; i++) {
@@ -147,9 +167,23 @@ console.log(cardClicked.length);
 let done = false;
 
 function victory () {
+    document.getElementById("game").classList.remove("col-8");
+    document.getElementById("game").classList.add("col-4");
+    document.getElementById("intel").classList.remove("col-1");
+    document.getElementById("intel").classList.add("col-6");
+    totTimeOnThird += Number(localStorage.getItem("timeThirdLevel"));
     victoryElem.style.visibility = "visible";
+    const soFar = document.createElement("div");
+    const soFarInside = document.createElement("h2");
+    soFarInside.classList.add("col-12");
+    soFar.classList.add("row");
+    soFar.classList.add("text-danger");
+    soFar.classList.add("text-center");
+    soFarInside.innerHTML = `So far your total time is ${totTimeOnThird} seconds`;
+    document.getElementById("main").appendChild(soFar);
+    soFar.appendChild(soFarInside);
     done = true;
-    myDivs = document.querySelectorAll("#container-cards div");
+    const myDivs = document.querySelectorAll("#container-cards div");
     [...myDivs].forEach((div) => div.remove())
 }
 

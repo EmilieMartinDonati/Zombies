@@ -9,7 +9,7 @@ class Ghost {
         this.vx = Math.floor(Math.random() * 14) + - 7;
         this.vy = Math.floor(Math.random() * 14) + - 7;
         const img = new Image();
-        img.src = './tux-161365_640.png';
+        img.src = './images-all-level/tux-161365_640.png';
         this.img = img;
         this.draw();
     }

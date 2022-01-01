@@ -11,7 +11,7 @@ class Bat {
       this.img = img;
       this.draw();
     });
-    img.src = './bat.png';
+    img.src = './images-all-level/bat.png';
   }
 
   draw() {

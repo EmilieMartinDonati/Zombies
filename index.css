@@ -7,7 +7,7 @@
 /*Canvas*/
 
   #other {
-    background-image: url("./Japanese-Castle.jpg");
+    background-image: url("./imagesFirstLevel/Japanese-Castle.jpg");
     background-size: cover;
     margin: 0;
   }
@@ -44,7 +44,7 @@
         }
 
 #modal {
-    background-image: url("modal.jpg");
+    background-image: url("./imagesFirstLevel/modal.jpg");
     background-size: cover;
     border-radius: 10px;
     padding: 5%;
@@ -53,7 +53,7 @@
 
 
   #modal-restart-body {
-    background-image: url("fantasy.jpg");
+    background-image: url("./images-all-level/fantasy.jpg");
     background-size: cover;
     border-radius: 30px;
     text-align: center;
@@ -73,7 +73,7 @@
   }
 
   #geisha {
-    background-image: url("./geisha.png");
+    background-image: url("./images-all-level/geisha.png");
     background-size: cover;
   }
 
@@ -108,7 +108,7 @@
   }
 
   #victory-body {
-    background-image: url("./modal.jpg");
+    background-image: url("./imagesFirstLevel/modal.jpg");
     background-size: cover;
     border-radius: 30px;
     text-align: center;
